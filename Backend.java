@@ -11,7 +11,7 @@ public class Backend {
     private static String userType;
     private static Scanner userInputScanner;
     private static HashMap<String, String> accounts;
-    private Dataset dataset;
+    private static Dataset dataset;
     private static Backend backend;
     private GraphDataType graphData;
 
@@ -56,6 +56,10 @@ public class Backend {
         } else {
             System.out.println("Invalid Input");
             welcomePrompt();
+        }
+
+        if (userType == "encost-verified") {
+            esgpOptionsPrompt();
         }
     }
 
@@ -229,9 +233,88 @@ public class Backend {
         System.out.println("(c) viewing the summary statistics");
         System.out.println("Input the feature you would like to use a, b, or c");
         } else {
-            System.out.println("(a) loading a custom dataset");
+            System.out.println("(a) visualising a graph representation of the data");
             System.out.println("Input the feature you would like to use");
         }
+
+        // Reads user input and stores it in input variable
+        userInputScanner = new Scanner(System.in);
+        String input;
+        if (userInputScanner.hasNext()) {
+            input = userInputScanner.next();
+        } else {
+            System.out.println("Invalid Input");
+            return;
+        }
+
+        if (userType == "encost-verified") {
+            switch (input) {
+                case "a":
+                    customDatasetPrompt();
+                    break;
+                case "A":
+                    customDatasetPrompt();
+                    break;
+                case "b":
+                    displayGraph();
+                    break;
+                case "B":
+                    displayGraph();
+                    break;
+                case "c":
+                    statsPrompt();
+                    break;
+                case "C":
+                    statsPrompt();
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+                    esgpOptionsPrompt();
+            }
+        } else {
+            switch (input) {
+                case "a":
+                    displayGraph();
+                    break;
+                case "A":
+                    displayGraph();
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+                    esgpOptionsPrompt();
+            }
+        }
+    }
+
+    /**
+     * Displays prompt to user to enter custom dataset file path.
+     */
+    public static void customDatasetPrompt() {
+        System.out.println("Enter full path of custom dataset:");
+    }
+
+    /**
+     * Creates dataset if one isn't created already.
+     * Creates GraphDataType from the dataset and displays graph using GraphStream.
+     */
+    public static void displayGraph() {
+        System.out.println("Graph data visualisation open in new window");
+        if (dataset == null) {
+            dataset = new Dataset();
+        }
+        dataset.createDataSet();
+    }
+
+    /**
+     * Creates dataset if one isn't created already.
+     * Runs stat calculations and displays it to console.
+     */
+    public static void statsPrompt() {
+        System.out.println("==> Summary Statistics <==");
+        if (dataset == null) {
+            dataset = new Dataset();
+        }
+        dataset.createDataSet();
     }
 
     /**
