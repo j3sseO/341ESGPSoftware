@@ -1,8 +1,3 @@
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 public class Device {
     
     // Attributes
@@ -54,11 +49,11 @@ public class Device {
             category = "Encost Wifi Routers";
         } else if (deviceType.equals("Hub/Controller")) {
             category = "Encost Hubs/Controllers";
-        } else if (deviceType.equals("Light Bulb") || deviceType.equals("Strip Lighting") ||
+        } else if (deviceType.equals("Light bulb") || deviceType.equals("Strip Lighting") ||
                     deviceType.equals("Other Lighting")) {
             category = "Encost Smart Lighting";
         } else if (deviceType.equals("Kettle") || deviceType.equals("Toaster") ||
-                    deviceType.equals("Coffee Makker")) {
+                    deviceType.equals("Coffee Maker")) {
             category = "Encost Smart Appliances";
         } else {
             category = "Encost Smart Whiteware";

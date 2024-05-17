@@ -13,7 +13,7 @@ public class Backend {
     private static HashMap<String, String> accounts;
     private static Dataset dataset;
     private static Backend backend;
-    private GraphDataType graphData;
+    private static GraphDataType graphData;
 
     /*
      * Private constructor used to intialise certain attributes.
@@ -307,18 +307,28 @@ public class Backend {
      * Displays visualisation of the data.
      */
     public static void displayGraph() {
-        System.out.println("Graph data visualisation open in new window");
+        System.out.println("Graph data visualisation open in new window\n");
+        System.out.println("Encost Wifi Routers - Red");
+        System.out.println("Encost Hubs/Controllers - Green");
+        System.out.println("Encost Smart Lighting - Yellow");
+        System.out.println("Encost Smart Appliances - Blue");
+        System.out.println("Encost Smart Whiteware - Purple\n");
+        System.out.println("Sends - Square");
+        System.out.println("Receives - Diamond");
+        System.out.println("Sends + Receives - Circle");
+        
         if (dataset == null) {
             dataset = new Dataset();
         }
         dataset.createDataSet();
 
-        GraphDataType graphDataType = new GraphDataType();
-        graphDataType.setDevices(dataset.getDevices());
+        graphData = new GraphDataType();
+        graphData.setDevices(dataset.getDevices());
 
         System.setProperty("org.graphstream.ui", "swing");
-        graphDataType.getGraph().display();
+        graphData.getGraph().setAttribute("ui.antialias");
 
+        graphData.getGraph().display();
     }
 
     /**
