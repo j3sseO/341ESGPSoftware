@@ -57,10 +57,10 @@ public class Backend {
             esgpOptionsPrompt();
         } else {
             System.out.println("Invalid Input");
-            System.out.println("3 tries remaining");
             welcomePrompt();
             // Keeps asking for user input until 3 incorrect tries is reached
             while (count != 3) {
+                System.out.println("Invalid Input");
                 welcomePrompt();
                 count++;
             }
@@ -120,10 +120,10 @@ public class Backend {
      */
     public static void welcomePrompt() {
         // Welcome and user type prompt
-        System.out.println("Welcome to the Encost Smart Graph Project");
-        System.out.println("What type of user are you?");
+        System.out.println("\nWelcome to the Encost Smart Graph Project\n");
+        System.out.println("What type of user are you?\n");
         System.out.println("(a) A Community User");
-        System.out.println("(b) An Encost User");
+        System.out.println("(b) An Encost User\n");
         System.out.println("Please input a or b:");
 
         // Reads user input and stores it in input variable
@@ -176,8 +176,8 @@ public class Backend {
         // Stays in loop until successful login, or no more attempts
         while (userType == "encost-unverified") {
             
-            System.out.println("Welcome Encost User please login");
-            System.out.println("Input your username:");
+            System.out.println("\nWelcome Encost User please login");
+            System.out.println("\nInput your username:");
 
             while (true) {
                 try {
@@ -213,7 +213,7 @@ public class Backend {
             * invalid, print error to console and recall the loginPrompt method.
             */
             if (accounts.get(username) != null && accounts.get(username).equals(encryptedPassword)) {
-                System.out.println("Welcome " + username);
+                System.out.println("\nWelcome " + username);
                 userType = "encost-verified";
             } else {
                 count++;
@@ -234,14 +234,14 @@ public class Backend {
      * Runs the chosen choice.
      */
     public static void esgpOptionsPrompt() {
-        System.out.println("ESGP Feature Options:");
+        System.out.println("\nESGP Feature Options:\n");
         if (userType == "encost-verified") {
         System.out.println("(a) loading a custom dataset");
         System.out.println("(b) visualising a graph representation of the data");
-        System.out.println("(c) viewing the summary statistics");
+        System.out.println("(c) viewing the summary statistics\n");
         System.out.println("Input the feature you would like to use a, b, or c");
         } else {
-            System.out.println("(a) visualising a graph representation of the data");
+            System.out.println("(a) visualising a graph representation of the data\n");
             System.out.println("Input the feature you would like to use");
         }
 
@@ -298,7 +298,7 @@ public class Backend {
      * Displays prompt to user to enter custom dataset file path.
      */
     public static void customDatasetPrompt() {
-        System.out.println("Enter full path of custom dataset:");
+        System.out.println("\nEnter full path of custom dataset:");
     }
 
     /**
@@ -307,7 +307,7 @@ public class Backend {
      * Displays visualisation of the data.
      */
     public static void displayGraph() {
-        System.out.println("Graph data visualisation open in new window\n");
+        System.out.println("\nGraph data visualisation open in new window\n");
         System.out.println("Encost Wifi Routers - Red");
         System.out.println("Encost Hubs/Controllers - Green");
         System.out.println("Encost Smart Lighting - Yellow");
@@ -336,7 +336,7 @@ public class Backend {
      * Runs stat calculations and displays it to console.
      */
     public static void statsPrompt() {
-        System.out.println("==> Summary Statistics <==");
+        System.out.println("\n==> Summary Statistics <==");
         if (dataset == null) {
             dataset = new Dataset();
         }
