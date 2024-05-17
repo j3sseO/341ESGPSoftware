@@ -48,6 +48,8 @@ public class Backend {
 
         welcomePrompt();
 
+        // Count to keep track of incorrect input
+        int count = 0;
         // Determines logic concerning what prompt to display next based on the user type
         if (userType == "encost-unverified") {
             loginPrompt();
@@ -55,7 +57,13 @@ public class Backend {
             esgpOptionsPrompt();
         } else {
             System.out.println("Invalid Input");
+            System.out.println("3 tries remaining");
             welcomePrompt();
+            // Keeps asking for user input until 3 incorrect tries is reached
+            while (count != 3) {
+                welcomePrompt();
+                count++;
+            }
         }
 
         if (userType == "encost-verified") {
@@ -296,6 +304,7 @@ public class Backend {
     /**
      * Creates dataset if one isn't created already.
      * Creates GraphDataType from the dataset and displays graph using GraphStream.
+     * Displays visualisation of the data.
      */
     public static void displayGraph() {
         System.out.println("Graph data visualisation open in new window");
@@ -303,6 +312,13 @@ public class Backend {
             dataset = new Dataset();
         }
         dataset.createDataSet();
+
+        GraphDataType graphDataType = new GraphDataType();
+        graphDataType.setDevices(dataset.getDevices());
+
+        System.setProperty("org.graphstream.ui", "swing");
+        graphDataType.getGraph().display();
+
     }
 
     /**
